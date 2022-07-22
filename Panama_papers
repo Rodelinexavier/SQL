@@ -1,5 +1,5 @@
 1.- Combien la base de données contient-elle de sociétés offshores différentes dont la source est "Panama Papers" ?
-SELECT name,source 
+SELECT COUNT (*)name,source 
 FROM entity 
 WHERE source = "Panama Papers";
 
