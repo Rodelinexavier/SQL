@@ -1,0 +1,51 @@
+1.Récupérer tous les albums
+SELECT Title 
+FROM albums;
+
+2.Récupérer tous les albums dont le titre contient "Great" 
+SELECT Title 
+FROM albums  
+WHERE title LIKE '%Great%';
+
+3.-Donner le nombre total d'albums contenus dans la base (sans regarder les id bien sûr)
+SELECT SUM(Title) AS  Sum_title
+FROM albums;
+
+4. upprimer tous les albums dont le nom contient "music"
+DELETE 
+FROM albums 
+WHERE Title LIKE'%music%';
+5—Récupérer tous les albums écrits par AC/DC
+SELECT Title 
+FROM albums,artists 
+WHERE Name LIKE'%AC/DC%';
+
+6.-Récupérer tous les titres des albums de AC/DC
+SELECT Title,Name 
+FROM albums, artists 
+WHERE name Like "%AC/DC%";
+
+
+7.-Récupérer la liste des titres de l'album "Let There Be Rock"
+SELECT Title AS Title_albums, Name as Tracks 
+FROM albums, tracks 
+WHERE Title 
+LIKE "%Let There Be Rock% »;
+
+8.-Afficher le prix de cet album ainsi que sa durée totale
+
+SELECT Title, SUM(unitprice) AS Total_price, 
+SUM(Milliseconds) AS Duration_total, 
+FROM albums,tracks 
+WHERE Title ="Let There Be Rock";
+
+9.-Afficher le coût de l'intégralité de la discographie de "Deep Purple"
+
+SELECT title,SUM(unitprice) AS Price_total FROM albums,tracks WHERE Title LIKE '%Deep Purple%';
+SELECT *
+FROM albums
+WHERE EXISTS (
+    SELECT * 
+    FROM albums 
+    WHERE Title = "%Deep Purple%"
+)
