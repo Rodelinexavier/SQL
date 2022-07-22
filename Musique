@@ -1,5 +1,5 @@
 1.Récupérer tous les albums
-SELECT Title 
+SELECT COUNT (*)Title 
 FROM albums;
 
 2.Récupérer tous les albums dont le titre contient "Great" 
