@@ -21,7 +21,7 @@ FROM albums,artists
 WHERE Name LIKE'%AC/DC%';
 
 6.-Récupérer tous les titres des albums de AC/DC
-SELECT Title,Name 
+SELECT COUNT (*)Title,Name 
 FROM albums, artists 
 WHERE name Like "%AC/DC%";
 
