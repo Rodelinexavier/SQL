@@ -1,0 +1,48 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2638
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red88\green91\blue109;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c41961\c43529\c50196;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 1.----R\'e9cup\'e9rer tous les albums\
+SELECT Title FROM albums;\
+\
+2.-----R\'e9cup\'e9rer tous les albums dont le titre contient "Great" \
+SELECT Title FROM albums  WHERE title LIKE '%Great%';\
+\
+3.-----Donner le nombre total d'albums contenus dans la base (sans regarder les id bien s\'fbr)\
+SELECT SUM(Title) AS  Sum_title\
+FROM albums;\
+\
+4. \cf2 \cb3 \expnd0\expndtw0\kerning0
+Supprimer tous les albums dont le nom contient "music"\cf0 \cb1 \kerning1\expnd0\expndtw0 \
+DELETE FROM albums WHERE Title LIKE'%music%';\
+5\'97\'97R\'e9cup\'e9rer tous les albums \'e9crits par AC/DC\
+SELECT Title FROM albums,artists WHERE Name LIKE'%AC/DC%';\
+\
+6.-\cf2 \cb3 \expnd0\expndtw0\kerning0
+----
+\f1\fs28 R\'e9cup\'e9rer tous les titres des albums de AC/DC\
+
+\f0\fs24 SELECT Title,Name FROM albums, artists WHERE name Like "%AC/DC%";\
+\cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\
+7.-----R\'e9cup\'e9rer la liste des titres de l'album "Let There Be Rock"\
+SELECT Title AS Title_albums, Name as Tracks FROM albums, tracks where Title LIKE "%Let There Be Rock%\'a0\'bb;\
+\
+8.- \cf2 \cb3 \expnd0\expndtw0\kerning0
+----Afficher le prix de cet album ainsi que sa dur\'e9e totale\
+\
+SELECT Title, SUM(unitprice) AS Total_price, SUM(Milliseconds) AS Duration_total, FROM albums,tracks WHERE Title ="Let There Be Rock";\
+\
+9.------Afficher le co\'fbt de l'int\'e9gralit\'e9 de la discographie de "Deep Purple"\
+\
+SELECT title,SUM(unitprice) AS Price_total FROM albums,tracks WHERE Title LIKE '%Deep Purple%';\
+SELECT *\
+FROM albums\
+WHERE EXISTS (\
+    SELECT * \
+    FROM albums \
+    WHERE Title = "%Deep Purple%"\
+)}
