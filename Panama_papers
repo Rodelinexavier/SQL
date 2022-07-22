@@ -1,0 +1,38 @@
+1.- Combien la base de données contient-elle de sociétés offshores différentes dont la source est "Panama Papers" ?
+SELECT name,source 
+FROM entity 
+WHERE source = "Panama Papers";
+
+2.- Quel intermédiaire a créé le plus de sociétés offshores ? A-t-on son adresse et son pays ?
+SELECT 
+MAX(name) AS Name, address, countries 
+FROM intermediary, address;
+3.Combien la base contient-elle de bénéficiaires avec un nom unique ? 
+Quel est le bénéficiaire dont le nom revient le plus souvent ?
+SELECT DISTINCT COUNT(name) 
+FROM officer
+UNION
+SELECT MAX(name) FROM officer;
+4.Donner la liste des juridictions avec le nombre d'entreprises offshores enregistrées sur chaque territoire, triée par ordre décroissant.
+SELECT DISTINCT(jurisdiction), name 
+FROM entity 
+GROUP BY jurisdiction 
+ORDER BY jurisdiction DESC;
+5.-Regrouper les sociétés offshores par statut, et trier la liste par ordre décroissant.
+SELECT name, status 
+FROM entity 
+GROUP BY status 
+ORDER BY status DESC;
+
+6.---Trouver la liste des sociétés dont la juridiction est "France", "Monaco" ou "Réunion".
+
+SELECT name,country FROM entity,country 
+WHERE country Like"%France%"
+OR country Like"%Monaco%"
+OR country Like"%Réunion%";
+
+Bonus
+Réussir à retrouver dans la base au moins 3 personnalités
+SELECT name FROM officer WHERE name LIKE"%Clive%Zuma%"
+OR name LIKE"%Hector%Daniel%Munoz%"
+OR name LIKe"%RAMI%Makhlouf%";
